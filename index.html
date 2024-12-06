@@ -218,7 +218,7 @@
                             </div>
                         </div>
                         <div class="flex-center | card-back">
-                            <button class="price-btn">BOOK NOW</button>
+                            <button class="price-btn" onclick=""> BOOK NOW</button>
                         </div>
                     </div>
                 </div>
@@ -416,7 +416,19 @@
                     <option>Seasonal Pick</option>
                 </select>
             </div>
-            <button class="modal_btn">BOOK NOW</button>
+            
+            <!-- Button to trigger popup -->
+            <button id="showPopupBtn" class="modal_btn">Book Now.</button>
+
+            <!-- Popup Modal -->
+            <div id="popup" class="popup">
+            <div class="popup-content">
+                <p>Booking successful! Details have been forwarded to your email.</p>
+                <button id="closePopupBtn" class="close-btn">Close</button>
+            </div>
+            </div>
+
+
         </div>
     </aside>
 
@@ -449,6 +461,33 @@
     <script defer src="/js/welcome_section.js"></script>
     <script defer src="/js/price.js"></script>
     <script defer src="/js/numcount.js"></script>
+
+             <script>
+                                // Get the button that triggers the popup
+                const showPopupBtn = document.getElementById("showPopupBtn");
+
+                // Get the popup and the close button
+                const popup = document.getElementById("popup");
+                const closePopupBtn = document.getElementById("closePopupBtn");
+
+                // When the "Click Me" button is clicked, show the popup
+                showPopupBtn.addEventListener("click", function() {
+                popup.style.display = "block"; // Show the popup
+                });
+
+                // When the "Close" button in the popup is clicked, hide the popup
+                closePopupBtn.addEventListener("click", function() {
+                popup.style.display = "none"; // Hide the popup
+                });
+
+                // Optionally, you can hide the popup when clicking anywhere outside of it
+                window.addEventListener("click", function(event) {
+                if (event.target === popup) {
+                    popup.style.display = "none"; // Close popup if clicked outside
+                }
+                });
+
+            </script>
     
     
 
