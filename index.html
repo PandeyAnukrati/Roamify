@@ -9,12 +9,12 @@
     <link rel="stylesheet" href="/css/util.css">
     <link rel="stylesheet" href="/css/style.css">
     <link rel="stylesheet" href="/css/media-query.css">
-
     
-
-
+    <script src="https://smtpjs.com/v3/smtp.js">
+    </script>
 
     <title>Roamify</title>
+
 </head>
 
 <body>
@@ -308,13 +308,44 @@
                 </div>
                 <div class="subscribe-container">
                     <h4 class="sitemap-header">GET YOUR INBOX IN SHAPE</h4>
-                    <p>Be the first to know about exclusive deals, merch drops, newletter and more!</p>
+                    <p>Be the first to know about exclusive deals, merch drops, newsletter, and more!</p>
                     <div class="email-container">
                         <label for="email">
-                            <input type="email" id="email" class="email-input" placeholder="example@domain.com">
+                            <input type="email" id="email-subscribe" class="email-input" placeholder="example@domain.com" required>
                         </label>
-                        <button class="btn | email-submit-btn" value="Send Email"  onclick="sendEmail()" ><span>SUBMIT</span></button>
-                        
+                        <button class="btn | email-submit-btn" onclick="sendEmail()"><span>SUBMIT</span></button>
+                        <script>
+
+                                function sendEmail() {
+                                    // Get the user's email from the input field
+                                    const userEmail = document.getElementById('email-subscribe').value;
+
+                                    // Validate the email input
+                                    if (!userEmail) {
+                                        alert('Please enter your email!');
+                                        return;
+                                    }
+
+                                    // Send the email via SMTP.js
+                                    Email.send({
+                                        SecureToken: "ec2bb68b-a544-4eaa-95cb-178d125ecf0b",  // Replace with your secure token from SMTP.js
+                                        To: "pandeyanukrati09@gmail.com", 
+                                        From:   "pandeyanukrati09@gmail.com", // Replace with your email address
+                                        Subject: "New Email Subscription",
+                                        Body: `You have a new email subscription from: ${userEmail}`
+                                    }).then(function(response) {
+                                        if (response === 'OK') {
+                                            console.log('Email sent successfully!');
+                                            alert('Thank you for query! We will get in touch with you shortly.');
+                                        } else {
+                                            console.error('Failed to send email:', response);
+                                            alert('Thank you for your query! We will get in touch with you shortly.');
+                                        }
+                                    });
+                                }
+
+
+                        </script>
                     </div>
                 </div>
             </div>
@@ -367,10 +398,12 @@
                 <label for="name">Name</label>
                 <input type="text" id="name">
             </div>
+
             <div class="customer_email | details_content">
-                <label for="email">Email</label>
-                <input type="email" id="email">
+                <label for="email-modal">Email</label>
+                <input type="email" id="email-modal" required>
             </div>
+            
             <div class="customer_mobile | details_content">
                 <label for="mobile">Mobile</label>
                 <input type="text" id="mobile">
@@ -416,6 +449,9 @@
     <script defer src="/js/welcome_section.js"></script>
     <script defer src="/js/price.js"></script>
     <script defer src="/js/numcount.js"></script>
+    
+    
+
     
 </body>
 
